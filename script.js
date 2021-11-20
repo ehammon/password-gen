@@ -6,6 +6,9 @@ var special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 var selections = "";
 
 
+// Get references to the #generate button to initiate sequence
+var generateBtn = document.querySelector("#generate");
+
 //Set password length
 var length = prompt("To set length of password, please choose a number between 8-128.");
 console.log(length);
@@ -18,14 +21,48 @@ console.log(length);
     alert ("Please choose a number within the range")
   }
 
+//Ask about password contents 
+var lowerSelect = prompt("Would you like lower case characters?");
+console.log(lowerSelect);
+
+var upperSelect = prompt("Would you like upper case characters?");
+console.log(upperSelect);
+
+var numSelect = prompt("Would you like number characters?");
+console.log(numSelect);
+
+var specialSelect = prompt("Would you like special characters?");
+console.log(specialSelect);
+
+if (lowerSelect) {
+  selections += lowerCase;
+}
+
+if (upperSelect) {
+  selections += upperCase;
+}
+
+if (numSelect) {
+  selections += isNums;
+}
+
+if (specialSelect) {
+  selections += special;
+  console.log(selections);
+}
 
 //Get references to password contents
 
-//
+//Capture their responses and create string of possible characters
 
 
-// Get references to the #generate button to initiate sequence
-var generateBtn = document.querySelector("#generate");
+
+
+
+
+
+
+
 
 // Write password to the #password input
 function writePassword() {
