@@ -2,7 +2,7 @@
 var isNums = "12345667890";
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+var special = "!#$%&'()*+,-./:;<=>?@][^_`{|}~";
 var selections = "";
 
 
@@ -22,6 +22,8 @@ console.log(length);
   }
 
 //Ask about password contents 
+var passwordChars = function() {
+  
 var lowerSelect = prompt("Would you like lower case characters?");
 console.log(lowerSelect);
 
@@ -33,6 +35,12 @@ console.log(numSelect);
 
 var specialSelect = prompt("Would you like special characters?");
 console.log(specialSelect);
+
+if (lowerSelect == false && upperSelect == false && numSelect == false && specialSelect == false) {
+  alert("You must choose at least one option.")
+  return null;
+}
+
 
 if (lowerSelect) {
   selections += lowerCase;
@@ -50,6 +58,7 @@ if (specialSelect) {
   selections += special;
   console.log(selections);
 }
+};
 
 //Get references to password contents
 
