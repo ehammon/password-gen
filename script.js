@@ -3,7 +3,7 @@ var isNums = "12345667890";
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var special = "!#$%&'()*+,-./:;<=>?@][^_`{|}~";
-let selections = "";
+
 
 //Get references to the #generate button to initiate sequence
 var generateBtn = document.querySelector("#generate");
@@ -11,12 +11,13 @@ var generateBtn = document.querySelector("#generate");
 // Generate the password
 var generatePassword = function() {
 
-
 //Prompt about password length
 
 var getLength = function() {
+  //debugger;
   let length = window.prompt("Please choose a password length between 8 and 128 characters.")
 
+  //this isn't working...
   if(Number.isNaN(length)){
     alert("You must input a number.")
     return ask();
@@ -36,7 +37,8 @@ var getLength = function() {
 };
 
 //Capture their responses
-var createChars = function() {
+let createChars = function() {
+  let selections = "";
 
 var lowerSelect = window.confirm("Would you like lower case characters?");
 console.log(lowerSelect);
@@ -76,7 +78,7 @@ return selections;
 };
 
 
-debugger;
+
   //Get references to password contents
   let length = getLength();
   let selections = createChars();
@@ -85,7 +87,7 @@ debugger;
 
   //for loop to run through the selections
   for (let i = 0; i < length; i++){
-  newPassword += selections(Math.floor(Math.random * selections.length));
+  newPassword += selections.charAt(Math.floor(Math.random() * selections.length));
   }
   console.log(newPassword);
   return newPassword;
