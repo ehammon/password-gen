@@ -3,45 +3,59 @@ var isNums = "12345667890";
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var special = "!#$%&'()*+,-./:;<=>?@][^_`{|}~";
-var selections = "";
+let selections = "";
 
-
-// Get references to the #generate button to initiate sequence
+//Get references to the #generate button to initiate sequence
 var generateBtn = document.querySelector("#generate");
 
-//Set password length
-var length = prompt("To set length of password, please choose a number between 8-128.");
-console.log(length);
+// Generate the password
+var generatePassword = function() {
 
-  if (Number.isNaN(length)){
-  alert("Password length must be a number")
+
+//Prompt about password length
+
+var getLength = function() {
+  let length = window.prompt("Please choose a password length between 8 and 128 characters.")
+
+  if(Number.isNaN(length)){
+    alert("You must input a number.")
+    return ask();
   }
 
-  if (length < 8 || length > 128) {
-    alert ("Please choose a number within the range")
+  if (length < 8){
+  window.prompt("Please choose a password length more than 8 characters.")
+  return null;
   }
 
-//Ask about password contents 
-var passwordChars = function() {
-  
-var lowerSelect = prompt("Would you like lower case characters?");
+  if (length > 128) {
+    window.prompt("Please choose a password length less than 128 characters.")
+    return null;
+  }
+  console.log(length);
+  return length;
+};
+
+//Capture their responses
+var createChars = function() {
+
+var lowerSelect = window.confirm("Would you like lower case characters?");
 console.log(lowerSelect);
 
-var upperSelect = prompt("Would you like upper case characters?");
+var upperSelect = window.confirm("Would you like upper case characters?");
 console.log(upperSelect);
 
-var numSelect = prompt("Would you like number characters?");
+var numSelect = window.confirm("Would you like number characters?");
 console.log(numSelect);
 
-var specialSelect = prompt("Would you like special characters?");
+var specialSelect = window.confirm("Would you like special characters?");
 console.log(specialSelect);
 
-if (lowerSelect == false && upperSelect == false && numSelect == false && specialSelect == false) {
+if (lowerSelect === false && upperSelect === false && numSelect === false && specialSelect === false) {
   alert("You must choose at least one option.")
-  return null;
+  return createChars();
 }
 
-
+//create string of chosen characters
 if (lowerSelect) {
   selections += lowerCase;
 }
@@ -58,29 +72,32 @@ if (specialSelect) {
   selections += special;
   console.log(selections);
 }
+return selections;
 };
 
-//Get references to password contents
 
-//Capture their responses and create string of possible characters
+debugger;
+  //Get references to password contents
+  let length = getLength();
+  let selections = createChars();
+  let newPassword = "";
+  
+
+  //for loop to run through the selections
+  for (let i = 0; i < length; i++){
+  newPassword += selections(Math.floor(Math.random * selections.length));
+  }
+  console.log(newPassword);
+  return newPassword;
+}
 
 
-
-
-
-
-
-
-
-
-// Write password to the #password input
-function writePassword() {
+//Write password to the #password input
+//function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
-}
-
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+//generateBtn.addEventListener("click", writePassword);
