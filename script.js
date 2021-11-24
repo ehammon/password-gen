@@ -14,22 +14,22 @@ var generateBtn = document.querySelector("#generate");
 
 var getLength = function() {
   
-  let length = window.prompt("Please choose a password length between 8 and 128 characters.")
+  let length = parseInt(window.prompt("Please choose a password length between 8 and 128 characters."))
   console.log(typeof length);
   //this isn't working...
   if(Number.isNaN(length)){
     alert("You must input a number.")
-    return ask();
+    return getLength();
   }
 
   if (length < 8){
-  window.prompt("Please choose a password length more than 8 characters.")
-  return null;
+  alert("Please choose a password length more than 8 characters.")
+  return getLength();
   }
 
   if (length > 128) {
-    window.prompt("Please choose a password length less than 128 characters.")
-    return null;
+    alert("Please choose a password length less than 128 characters.")
+    return getLength();
   }
   console.log(length);
   return length;
