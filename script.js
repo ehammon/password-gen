@@ -8,15 +8,14 @@ var special = "!#$%&'()*+,-./:;<=>?@][^_`{|}~";
 //Get references to the #generate button to initiate sequence
 var generateBtn = document.querySelector("#generate");
 
-// Generate the password
-var generatePassword = function() {
+
 
 //Prompt about password length
 
 var getLength = function() {
-  //debugger;
+  
   let length = window.prompt("Please choose a password length between 8 and 128 characters.")
-
+  console.log(typeof length);
   //this isn't working...
   if(Number.isNaN(length)){
     alert("You must input a number.")
@@ -77,11 +76,12 @@ if (specialSelect) {
 return selections;
 };
 
-
+// Generate the password
+var generatePassword = function(length, selections) {
 
   //Get references to password contents
-  let length = getLength();
-  let selections = createChars();
+  //let length = getLength();
+  //let selections = createChars();
   let newPassword = "";
   
 
@@ -95,12 +95,14 @@ return selections;
 
 
 //Write password to the #password input
-//function writePassword() {
-  var password = generatePassword();
+function writePassword() {
+  let length = getLength();
+  let selections = createChars();
+  var password = generatePassword(length, selections);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+};
 // Add event listener to generate button
-generateBtn.addEventListener("click", getLength);
+generateBtn.addEventListener("click", writePassword);
 
